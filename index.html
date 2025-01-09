@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balls</title>
+    <script>
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // Зарежда само mobile.js, ако е мобилно устройство
+            let script = document.createElement("script");
+            script.src = "mobile.js";
+            document.head.appendChild(script);
+        } else {
+            // Зарежда desktop.js за настолни устройства
+            let script = document.createElement("script");
+            script.src = "desktop.js";
+            document.head.appendChild(script);
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="img/topka3.ico">
+</head>
+<body>
+    <div id="cont">
+        <h1 id="myH1">Да поиграем на „Магнитни топки“</h1>
+        <h3 class="myH3" id="perviH3">Управление - с бутони <span id="ijkm">I, J, K, M</span>.</h3>
+        <h3 class="myH3" id="vtoriH3">Паузиране на играта - с бутон '<span id="dumaPauza">ПАУЗА</span>'</h3>
+        <div>
+            
+            <input type="radio" id="easy" name="trudnost" checked>
+            <label for="easy" id="lblLesno">лесно</label><br>
+            <input type="radio" id="medium" name="trudnost">
+            <label for="medium" id="lblSredno">средно</label><br>
+            <input type="radio" id="hard" name="trudnost">
+            <label for="hard" id="lblTrudno">трудно</label>
+        </div>      
+        
+        <button id="button" type="button">Старт</button>
+    </div>
+    
+    <div id="mobileControls" style="display: none;">
+        <button onclick="moveUp()">↑</button>
+        <button onclick="moveLeft()">←</button>
+        <button onclick="moveRight()">→</button>
+        <button onclick="moveDown()">↓</button>
+        <button onclick="pauseGame()">Пауза</button>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div id="infoBar">Информация: 0 точки</div>
+        <button id="restartButton">Рестарт</button>
+    <script src="scropt0.js"></script>
+</body>
+</html>
