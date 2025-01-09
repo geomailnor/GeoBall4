@@ -109,7 +109,7 @@ canvas {
     line-height: 15px; /* Вертикално центриране на текста */
     background: linear-gradient(to bottom, #9d4040, #390000); /* Градиент от светъл към тъмен тон */
     color: white; /* Текстът е в бял цвят */
-    text-align: center;
+    text-align: left;
     padding: 10px 0;
     font-family: Arial, sans-serif;
     /* z-index: 1000; */ /* Над всичко друго */
