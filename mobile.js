@@ -38,7 +38,6 @@ let enemiSkor1 = 0.5, enemiSkor2 = 1.5;
 // Зареждане на текста според езика
 const selectedLanguage = getLanguage();
 let strHvanati = "хванати";
-let strTopki ="топки";
 let strDalg = "дължина";
 let strOstavashti = "оставащи";
 let strIgrataENaPauza ="Играта е на пауза! Натиснете клавиш 'Пауза'";
@@ -392,7 +391,7 @@ function updateInfoBar() {
         broiki= BR_TOPKI;
     }
     else{broiki= brSvobodniT();}
-    infoBar.textContent = `${strHvanati}: ${points} ${strTopki} | ${strDalg}: ${zakacheni} ${strTopki} | ${strOstavashti}: ${broiki} ${strTopki}`;
+    infoBar.textContent = `${strHvanati}: ${points} | ${strDalg}: ${zakacheni} | ${strOstavashti}: ${broiki}`;
     //infoBar.textContent = `Хванати: ${points} топки | Дължина: ${zakacheni} топки | Остават: ${broiki} топки`;
 }
 // увеличаване на точките:
@@ -567,7 +566,6 @@ function dobaviAngl(){
     lblTrud.textContent = "Hard";
     button.textContent = "Start";
     strHvanati = "caught";
-    strTopki ="balls";
     strDalg = "length";
     strOstavashti = "remaining";
     updateInfoBar();
@@ -586,7 +584,6 @@ function dobaviNorsk(){
     lblTrud.textContent = "vanskelig";
     button.textContent = "Start";
     strHvanati = "fanget";
-    strTopki ="kuler";
     strDalg = "lengde";
     strOstavashti = "gjenstår";
     updateInfoBar();
