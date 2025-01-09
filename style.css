@@ -17,7 +17,7 @@ label[for="easy"]:hover, label[for="medium"]:hover, label[for="hard"]:hover {
 #cont{
     z-index: 2; /* Уверяваме се, че контейнерът е над канавата */
     width: 60vw; /* Задава ширина 50% от изгледа на браузъра */
-    height: 80vh; /* Задава височина 50% от изгледа на браузъра */
+    height: 70vh; /* Задава височина 50% от изгледа на браузъра */
     background-color: brown; /* Запазваме фона */
     display: flex;
     flex-direction: column;
