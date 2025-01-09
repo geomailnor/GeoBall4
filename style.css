@@ -27,7 +27,7 @@ label[for="easy"]:hover, label[for="medium"]:hover, label[for="hard"]:hover {
     top: calc(50% - 19px);
     left: 50%; /* Центриране по хоризонтала */
     transform: translate(-50%, -50%); /* Придвижва правоъгълника така, че да е напълно центриран */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Добавя сянка за по-добра визуализация */
+    box-shadow: 7px 7px 8px rgba(0, 0, 0, 0.7); /* Добавя сянка за по-добра визуализация */
     border-radius: 10px; /* Леко заобляне на ъглите */
     padding: 20px;/* Осигурява вътрешно разстояние за елементите */
     overflow: hidden; /* Скрива излизащи елементи, ако се случи */
@@ -40,8 +40,7 @@ h1, .myH3 {
 }
 
 #button{
-    /* margin: 0; */ /* Премахва външния маргин на бутона */
-    /*margin-top: 5px;*/
+    /* margin-top: 5px; */
     cursor: pointer;
     background-color: burlywood;
     border: none;
@@ -63,8 +62,7 @@ h1, .myH3 {
     transform: scale(0.95);  /* Намаляваме бутона за да изглежда натиснат */
 }
 input[type="radio"] {
-    transform: scale(1.1); /* Увеличаваме размера на радиобутоните */
-    /* margin-right: 10px; */ /* Малко разстояние между радиобутоните и текста */
+    transform: scale(1); /* Увеличаваме размера на радиобутоните */
 }
 label {
     font-family: Arial, Helvetica, sans-serif;
@@ -75,24 +73,22 @@ label {
 h1{
     font-family: Arial, Helvetica, sans-serif;
     font-style: italic;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: hsl(34, 57%, 70%);
-    /*margin-top: 15px;
-    margin-bottom: 15px;*/
+    /* margin-top: 15px;
+    margin-bottom: 15px; */
 }
 .myH3{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: hsl(34, 57%, 70%);
-    /*margin-top: 15px;*/
+    /* margin-top: 15px; */
 }
 #ijkm, #dumaPauza{
     background-color: hsl(34, 57%, 58%);  
     color: brown;
 }
-#vtoriH3{
-    /*margin-bottom: 10px;*/
-}
+
 canvas {
     position: absolute;
     display: block; /* Премахва допълнителните отстояния около канавата */
@@ -127,7 +123,7 @@ canvas {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.5rem;
     z-index: 1000;
     transition: background-color 0.3s;
 }
