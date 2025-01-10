@@ -306,7 +306,7 @@ function increasePoints(amount) {
     updateInfoBar();
 }
 
-function drawMobileControls() {
+/* function drawMobileControls() {
     // Рисуване на бутони в долната част на canvas
     ctx.fillStyle = "lightgray";
     ctx.fillRect(50, 500, 80, 50); // Up
@@ -323,8 +323,140 @@ function drawMobileControls() {
     ctx.fillText("→", 285, 590);
     ctx.fillText("↓", 385, 530);
     ctx.fillText("Pause", 465, 530);
-}
-function handleMobileControlClick(event) {
+} */
+    function drawMobileControls() {
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+    
+        // Изчисляване на позиции спрямо размерите на canvas
+        const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
+        const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
+    
+        const centerX = canvasWidth / 2;
+        const bottomY = canvasHeight - buttonHeight - gap;
+    
+        // Координати на бутоните
+        const upX = centerX - buttonWidth / 2;
+        const upY = bottomY - buttonHeight - gap;
+    
+        const leftX = centerX - buttonWidth - gap;
+        const leftY = bottomY;
+    
+        const rightX = centerX + gap;
+        const rightY = bottomY;
+    
+        const downX = centerX - buttonWidth / 2;
+        const downY = bottomY + buttonHeight + gap;
+    
+        const pauseX = canvasWidth - buttonWidth - gap;
+        const pauseY = bottomY;
+    
+        // Рисуване на бутоните
+        ctx.fillStyle = "rgba(192, 192, 192, 0.8)"; // Полупрозрачен светлосив цвят
+        ctx.fillRect(upX, upY, buttonWidth, buttonHeight); // Up
+        ctx.fillRect(leftX, leftY, buttonWidth, buttonHeight); // Left
+        ctx.fillRect(rightX, rightY, buttonWidth, buttonHeight); // Right
+        ctx.fillRect(downX, downY, buttonWidth, buttonHeight); // Down
+        ctx.fillRect(pauseX, pauseY, buttonWidth, buttonHeight); // Pause
+    
+        // Текст върху бутоните
+        ctx.fillStyle = "black";
+        ctx.font = `${Math.floor(buttonHeight * 0.5)}px Arial`; // Размерът на шрифта е 50% от височината на бутоните
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+    
+        ctx.fillText("↑", upX + buttonWidth / 2, upY + buttonHeight / 2);
+        ctx.fillText("←", leftX + buttonWidth / 2, leftY + buttonHeight / 2);
+        ctx.fillText("→", rightX + buttonWidth / 2, rightY + buttonHeight / 2);
+        ctx.fillText("↓", downX + buttonWidth / 2, downY + buttonHeight / 2);
+        ctx.fillText("Pause", pauseX + buttonWidth / 2, pauseY + buttonHeight / 2);
+    }
+
+    function handleMobileControlClick(event) {
+        let zvukPath = "sounds/snakeZavoj.wav";
+    
+        // Изчисляване на размерите на canvas-а и позициите на бутоните
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+    
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+    
+        const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
+        const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
+    
+        const centerX = canvasWidth / 2;
+        const bottomY = canvasHeight - buttonHeight - gap;
+    
+        const upX = centerX - buttonWidth / 2;
+        const upY = bottomY - buttonHeight - gap;
+    
+        const leftX = centerX - buttonWidth - gap;
+        const leftY = bottomY;
+    
+        const rightX = centerX + gap;
+        const rightY = bottomY;
+    
+        const downX = centerX - buttonWidth / 2;
+        const downY = bottomY + buttonHeight + gap;
+    
+        const pauseX = canvasWidth - buttonWidth - gap;
+        const pauseY = bottomY;
+    
+        // Проверка за клик върху бутоните
+        if (x > upX && x < upX + buttonWidth && y > upY && y < upY + buttonHeight) {
+            // Up button
+            if (posoka !== "i") {
+                playerBall.vx = 0;
+                playerBall.vy = -speed;
+                playMoveSound(zvukPath);
+                posoka = "i";
+            }
+        } else if (x > leftX && x < leftX + buttonWidth && y > leftY && y < leftY + buttonHeight) {
+            // Left button
+            if (posoka !== "j") {
+                playerBall.vx = -speed;
+                playerBall.vy = 0;
+                playMoveSound(zvukPath);
+                posoka = "j";
+            }
+        } else if (x > rightX && x < rightX + buttonWidth && y > rightY && y < rightY + buttonHeight) {
+            // Right button
+            if (posoka !== "k") {
+                playerBall.vx = speed;
+                playerBall.vy = 0;
+                playMoveSound(zvukPath);
+                posoka = "k";
+            }
+        } else if (x > downX && x < downX + buttonWidth && y > downY && y < downY + buttonHeight) {
+            // Down button
+            if (posoka !== "m") {
+                playerBall.vx = 0;
+                playerBall.vy = speed;
+                playMoveSound(zvukPath);
+                posoka = "m";
+            }
+        } else if (x > pauseX && x < pauseX + buttonWidth && y > pauseY && y < pauseY + buttonHeight) {
+            // Pause button
+            if (btnStartPressed) {
+                if (chocar === true || fin === true) {
+                    location.reload(); // Рестартиране на играта
+                }
+                isPaused = !isPaused; // Превключва между пауза и игра
+                if (isPaused) {
+                    nastroiPausedGame();
+                } else {
+                    nastroiResumedGame();
+                }
+            }
+        }
+    }
+    
+
+/* function handleMobileControlClick(event) {
     let zvukPath = "sounds/snakeZavoj.wav";
     const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -380,7 +512,7 @@ function handleMobileControlClick(event) {
             }
         }
     }
-}
+} */
 
 function drawGame() {
     if (isPaused === false && chocar === false) { 
