@@ -1,4 +1,3 @@
-document.getElementById("mobileControls").style.display = "block";
 // Вземане на системния език
 const systemLanguage = navigator.language || navigator.userLanguage;
 const myH1 = document.getElementById("myH1");
@@ -20,7 +19,7 @@ let broiki = BR_TOPKI;
 let balls = [];
 let playerBall = null;
 let speed = 3;
-let isPaused = false, spacePressed = false;
+let isPaused = false;
 let chocar = false; // Използва се за рестартиране на играта, след сблъсък.
 let btnStartPressed = false;
 const katasSound = new Audio("sounds/explosion.wav");
@@ -38,6 +37,7 @@ let enemiSkor1 = 0.5, enemiSkor2 = 1.5;
 // Зареждане на текста според езика
 const selectedLanguage = getLanguage();
 let strHvanati = "хванати";
+let strTopki ="топки";
 let strDalg = "дължина";
 let strOstavashti = "оставащи";
 let strIgrataENaPauza ="Играта е на пауза! Натиснете клавиш 'Пауза'";
@@ -169,104 +169,12 @@ function createEneBalls(){
 
     }
 }
-// Управление на топката на играча
-function moveUp() {
-    console.log("Up");
-    let zvukPath = "sounds/snakeZavoj.wav";
-    if(posoka != "i"){
-        playerBall.vx = 0;
-        playerBall.vy = -speed;
-        playMoveSound(zvukPath);
-        posoka = "i";
-    }
-}
-function moveLeft() {
-    console.log("Left");
-    let zvukPath = "sounds/snakeZavoj.wav";
-    if(posoka != "j"){
-        playerBall.vx = -speed;
-        playerBall.vy = 0;
-        playMoveSound(zvukPath);
-        posoka = "j";
-    }
-}
-function moveRight() {
-    console.log("Right");
-    let zvukPath = "sounds/snakeZavoj.wav";
-    if(posoka != "k"){
-        playerBall.vx = speed;
-        playerBall.vy = 0;
-        playMoveSound(zvukPath);
-        posoka = "k";
-    }
-}
-function moveDown() {
-    console.log("Down");
-    let zvukPath = "sounds/snakeZavoj.wav";
-    if(posoka != "m"){
-        playerBall.vx = 0;
-        playerBall.vy = speed;
-        playMoveSound(zvukPath);
-        posoka = "m";
-    }
-}
-function pauseGame() {
-    console.log("Pause");
-}
-document.addEventListener("keydown", (event) => {
-    let zvukPath = "sounds/snakeZavoj.wav";
-        switch (event.key) {
-            case "i": // Нагоре
-            if(posoka != "i"){
-                playerBall.vx = 0;
-                playerBall.vy = -speed;
-                playMoveSound(zvukPath);
-                posoka = "i";
-                }
-            break;
-            case "m": // Надолу
-            if(posoka != "m"){
-                playerBall.vx = 0;
-                playerBall.vy = speed;
-                playMoveSound(zvukPath);
-                posoka = "m";
-            }
-            break;   
-            case "j": // Наляво
-            if(posoka != "j"){
-                playerBall.vx = -speed;
-                playerBall.vy = 0;
-                playMoveSound(zvukPath);
-                posoka = "j";
-            }
-            break; 
-            case "k": // Надясно
-            if(posoka != "k"){
-                playerBall.vx = speed;
-                playerBall.vy = 0;
-                playMoveSound(zvukPath);
-                posoka = "k";
-            }
-            break;
-        }
-    if(event.code === 'Space' && !spacePressed && btnStartPressed){
-        if(chocar === true || fin === true){
-            location.reload(); // Рестартиране на играта
-        }
-        isPaused = !isPaused; // Превключва между пауза и игра
-        spacePressed = true; // Задава, че Space е натиснат
-        if(isPaused){
-            nastroiPausedGame();
-        }else{
-            nastroiResumedGame();
-        }
-    }
-});
-document.addEventListener("keyup", (event) => {
+/* document.addEventListener("keyup", (event) => {
     if (event.code === "Space") {
         spacePressed = false; // Задава, че Space вече не е натиснат
     }
-});
+}); */
+canvas.addEventListener("click", handleMobileControlClick);
 
 function nastroiPausedGame(){
     canvas.style.cursor = 'auto';
@@ -364,8 +272,8 @@ function narisuvaiPobedaZaguba(zagPob){
     ctx.font = 'bold 2rem Arial';
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
-        ctx.font = 'bold 1.3rem Arial';
-        ctx.fillText(bonusText, canvas.width / 2, canvas.height / 2.4 + 50);
+    ctx.font = 'bold 1.3rem Arial';
+    ctx.fillText(bonusText, canvas.width / 2, canvas.height / 2.4 + 50);
     
     ctx.font = '1.2rem Arial';
     ctx.fillStyle ='#555';
@@ -391,13 +299,89 @@ function updateInfoBar() {
         broiki= BR_TOPKI;
     }
     else{broiki= brSvobodniT();}
-    infoBar.textContent = `${strHvanati}: ${points} | ${strDalg}: ${zakacheni} | ${strOstavashti}: ${broiki}`;
+    infoBar.textContent = `${strHvanati}: ${points} ${strTopki} | ${strDalg}: ${zakacheni} ${strTopki} | ${strOstavashti}: ${broiki} ${strTopki}`;
     //infoBar.textContent = `Хванати: ${points} топки | Дължина: ${zakacheni} топки | Остават: ${broiki} топки`;
 }
 // увеличаване на точките:
 function increasePoints(amount) {
     points += amount;
     updateInfoBar();
+}
+
+function drawMobileControls() {
+    // Рисуване на бутони в долната част на canvas
+    ctx.fillStyle = "lightgray";
+    ctx.fillRect(50, 500, 80, 50); // Up
+    ctx.fillRect(150, 560, 80, 50); // Left
+    ctx.fillRect(250, 560, 80, 50); // Right
+    ctx.fillRect(350, 500, 80, 50); // Down
+    ctx.fillRect(450, 500, 100, 50); // Pause
+
+    // Текст върху бутоните
+    ctx.fillStyle = "black";
+    ctx.font = "20px Arial";
+    ctx.fillText("↑", 85, 530);
+    ctx.fillText("←", 185, 590);
+    ctx.fillText("→", 285, 590);
+    ctx.fillText("↓", 385, 530);
+    ctx.fillText("Pause", 465, 530);
+}
+function handleMobileControlClick(event) {
+    let zvukPath = "sounds/snakeZavoj.wav";
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Проверка за клик върху бутоните
+    if (x > 50 && x < 130 && y > 500 && y < 550) {
+        //console.log("Up button clicked");
+        if(posoka != "i"){
+            playerBall.vx = 0;
+            playerBall.vy = -speed;
+            playMoveSound(zvukPath);
+            posoka = "i";
+            }
+    } else if (x > 150 && x < 230 && y > 560 && y < 610) {
+        //console.log("Left button clicked");
+        if(posoka != "j"){
+            playerBall.vx = -speed;
+            playerBall.vy = 0;
+            playMoveSound(zvukPath);
+            posoka = "j";
+        }
+        
+    } else if (x > 250 && x < 330 && y > 560 && y < 610) {
+        //console.log("Right button clicked");
+        if(posoka != "k"){
+            playerBall.vx = speed;
+            playerBall.vy = 0;
+            playMoveSound(zvukPath);
+            posoka = "k";
+        }
+    } else if (x > 350 && x < 430 && y > 500 && y < 550) {
+        //console.log("Down button clicked");
+        if(posoka != "m"){
+            playerBall.vx = 0;
+            playerBall.vy = speed;
+            playMoveSound(zvukPath);
+            posoka = "m";
+        }
+
+    } else if (x > 450 && x < 550 && y > 500 && y < 550) {
+        //console.log("Pause button clicked");
+        if(btnStartPressed){
+            if(chocar === true || fin === true){
+                location.reload(); // Рестартиране на играта
+            }
+            isPaused = !isPaused; // Превключва между пауза и игра
+            //spacePressed = true; // Задава, че Space е натиснат
+            if(isPaused){
+                nastroiPausedGame();
+            }else{
+                nastroiResumedGame();
+            }
+        }
+    }
 }
 
 function drawGame() {
@@ -566,6 +550,7 @@ function dobaviAngl(){
     lblTrud.textContent = "Hard";
     button.textContent = "Start";
     strHvanati = "caught";
+    strTopki ="balls";
     strDalg = "length";
     strOstavashti = "remaining";
     updateInfoBar();
@@ -584,6 +569,7 @@ function dobaviNorsk(){
     lblTrud.textContent = "vanskelig";
     button.textContent = "Start";
     strHvanati = "fanget";
+    strTopki ="kuler";
     strDalg = "lengde";
     strOstavashti = "gjenstår";
     updateInfoBar();
@@ -600,4 +586,5 @@ if (selectedLanguage === 'en') {
 }
 
 createBalls();
+drawMobileControls();
 drawGame();
