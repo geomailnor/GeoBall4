@@ -11,10 +11,16 @@
             script.src = "mobile.js";
             document.head.appendChild(script);
         } else {
-            // Зарежда desktop.js за настолни устройства
+
+            // Зарежда само mobile.js, ако е мобилно устройство
             let script = document.createElement("script");
-            script.src = "desktop.js";
+            script.src = "mobile.js";
             document.head.appendChild(script);
+
+            // Зарежда desktop.js за настолни устройства
+            /* let script = document.createElement("script");
+            script.src = "desktop.js";
+            document.head.appendChild(script); */
         }
     </script>
     <link rel="stylesheet" href="style.css">
@@ -38,13 +44,6 @@
         <button id="button" type="button">Старт</button>
     </div>
     
-    <div id="mobileControls" style="display: none;">
-        <button onclick="moveUp()">↑</button>
-        <button onclick="moveLeft()">←</button>
-        <button onclick="moveRight()">→</button>
-        <button onclick="moveDown()">↓</button>
-        <button onclick="pauseGame()">Пауза</button>
-    </div>
     <canvas id="gameCanvas"></canvas>
     <div id="infoBar">Информация: 0 точки</div>
     <button id="restartButton">Рестарт</button>
