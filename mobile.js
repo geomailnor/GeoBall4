@@ -368,11 +368,12 @@ function increasePoints(amount) {
         ctx.font = `${Math.floor(buttonSize * 0.5)}px Arial`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-    
-        ctx.fillText("↑", upX + buttonSize / 2, upY + buttonSize / 2);
-        ctx.fillText("←", leftX + buttonSize / 2, leftY + buttonSize / 2);
-        ctx.fillText("→", rightX + buttonSize / 2, rightY + buttonSize / 2);
-        ctx.fillText("↓", downX + buttonSize / 2, downY + buttonSize / 2);
+        
+        ctx.fillText("⬆️", upX + buttonSize / 2, upY + buttonSize / 2);
+        ctx.fillText("⬅️", leftX + buttonSize / 2, leftY + buttonSize / 2);
+        ctx.fillText("➡️", rightX + buttonSize / 2, rightY + buttonSize / 2);
+        ctx.fillText("⬇️", downX + buttonSize / 2, downY + buttonSize / 2);
+        ctx.font = `${Math.floor(buttonSize * 0.3)}px Arial`;
         ctx.fillText("Pause", pauseX + buttonSize / 2, pauseY + buttonSize / 2);
     }
 
