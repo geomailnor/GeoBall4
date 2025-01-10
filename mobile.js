@@ -329,19 +329,14 @@ function increasePoints(amount) {
         const canvasHeight = canvas.height;
     
         // Изчисляване на позиции спрямо размерите на canvas
-        if(canvasWidth> canvasHeight){
-            const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
-            const buttonHeight = buttonWidth; //canvasHeight * 0.1; // 10% от височината на canvas
-        }
-        else{
-            const buttonHeight = canvasHeight * 0.1;
-            const buttonWidth = buttonHeight;
-        }
         
+        const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
+        const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+                
         const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
     
         const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - buttonHeight - gap;
+        const bottomY = canvasHeight - buttonHeight - 2 * gap;
     
         // Координати на бутоните
         const upX = centerX - buttonWidth / 2;
