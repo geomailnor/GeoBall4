@@ -113,7 +113,7 @@ canvas {
 }
 
 #restartButton {
-    position: absolute; /* Позволява прецизно позициониране */
+    position: fixed; /*absolute;*/
     right: 14px; /* Бутонът е вдясно */
     top: calc(100% - 19px); /* Центриране вертикално */
     transform: translateY(-50%); /* Компенсира вертикалната позиция */
