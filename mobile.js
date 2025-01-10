@@ -336,7 +336,7 @@ function increasePoints(amount) {
         const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
     
         const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - buttonHeight - 2 * gap;
+        const bottomY = canvasHeight - 2 * buttonHeight -  gap;
     
         // Координати на бутоните
         const upX = centerX - buttonWidth / 2;
@@ -391,7 +391,7 @@ function increasePoints(amount) {
         const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
     
         const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - buttonHeight - 2 * gap;
+        const bottomY = canvasHeight - 2 * buttonHeight - gap;
     
         const upX = centerX - buttonWidth / 2;
         const upY = bottomY - buttonHeight - gap;
