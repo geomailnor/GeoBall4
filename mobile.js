@@ -584,7 +584,7 @@ if (selectedLanguage === 'en') {
     //console.log('Laster norsk...');
     dobaviNorsk();// Добави норвежки текст
 }
-
+alert("ddddd);
 createBalls();
 drawMobileControls();
 drawGame();
