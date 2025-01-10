@@ -330,49 +330,50 @@ function increasePoints(amount) {
     
         // Изчисляване на позиции спрямо размерите на canvas
         
-        const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
-        const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        //const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
+        //const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        const buttonSize = Math.max(canvasWidth, canvasHeight) * 0.1;
                 
         const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
     
         const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - 2 * buttonHeight -  gap;
+        const bottomY = canvasHeight - 2 * buttonSize -  gap;
     
         // Координати на бутоните
-        const upX = centerX - buttonWidth / 2;
-        const upY = bottomY - buttonHeight - gap;
+        const upX = centerX - buttonSize / 2;
+        const upY = bottomY - buttonSize - gap;
     
-        const leftX = centerX - buttonWidth - gap;
+        const leftX = centerX - buttonSize - gap;
         const leftY = bottomY;
     
         const rightX = centerX + gap;
         const rightY = bottomY;
     
-        const downX = centerX - buttonWidth / 2;
-        const downY = bottomY + buttonHeight + gap;
+        const downX = centerX - buttonSize / 2;
+        const downY = bottomY + buttonSize + gap;
     
-        const pauseX = canvasWidth - buttonWidth - gap;
+        const pauseX = canvasWidth - buttonSize - gap;
         const pauseY = bottomY;
     
         // Рисуване на бутоните
         ctx.fillStyle = "rgba(192, 192, 192, 0.8)"; // Полупрозрачен светлосив цвят
-        ctx.fillRect(upX, upY, buttonWidth, buttonHeight); // Up
-        ctx.fillRect(leftX, leftY, buttonWidth, buttonHeight); // Left
-        ctx.fillRect(rightX, rightY, buttonWidth, buttonHeight); // Right
-        ctx.fillRect(downX, downY, buttonWidth, buttonHeight); // Down
-        ctx.fillRect(pauseX, pauseY, buttonWidth, buttonHeight); // Pause
+        ctx.fillRect(upX, upY, buttonSize, buttonSize); // Up
+        ctx.fillRect(leftX, leftY, buttonSize, buttonSize); // Left
+        ctx.fillRect(rightX, rightY, buttonSize, buttonSize); // Right
+        ctx.fillRect(downX, downY, buttonSize, buttonSize); // Down
+        ctx.fillRect(pauseX, pauseY, buttonSize, buttonSize); // Pause
     
         // Текст върху бутоните
         ctx.fillStyle = "black";
-        ctx.font = `${Math.floor(buttonHeight * 0.5)}px Arial`; // Размерът на шрифта е 50% от височината на бутоните
+        ctx.font = `${Math.floor(buttonSize * 0.5)}px Arial`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
     
-        ctx.fillText("↑", upX + buttonWidth / 2, upY + buttonHeight / 2);
-        ctx.fillText("←", leftX + buttonWidth / 2, leftY + buttonHeight / 2);
-        ctx.fillText("→", rightX + buttonWidth / 2, rightY + buttonHeight / 2);
-        ctx.fillText("↓", downX + buttonWidth / 2, downY + buttonHeight / 2);
-        ctx.fillText("Pause", pauseX + buttonWidth / 2, pauseY + buttonHeight / 2);
+        ctx.fillText("↑", upX + buttonSize / 2, upY + buttonSize / 2);
+        ctx.fillText("←", leftX + buttonSize / 2, leftY + buttonSize / 2);
+        ctx.fillText("→", rightX + buttonSize / 2, rightY + buttonSize / 2);
+        ctx.fillText("↓", downX + buttonSize / 2, downY + buttonSize / 2);
+        ctx.fillText("Pause", pauseX + buttonSize / 2, pauseY + buttonSize / 2);
     }
 
     function handleMobileControlClick(event) {
@@ -386,30 +387,31 @@ function increasePoints(amount) {
         const canvasWidth = canvas.width;
         const canvasHeight = canvas.height;
     
-        const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
-        const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        //const buttonWidth = canvasWidth * 0.1; // 10% от ширината на canvas
+        //const buttonHeight = canvasHeight * 0.1; // 10% от височината на canvas
+        const buttonSize = Math.max(canvasWidth, canvasHeight) * 0.1;
         const gap = canvasWidth * 0.05; // Разстояние между бутоните (5% от ширината)
     
         const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - 2 * buttonHeight - gap;
+        const bottomY = canvasHeight - 2 * buttonSize - gap;
     
-        const upX = centerX - buttonWidth / 2;
-        const upY = bottomY - buttonHeight - gap;
+        const upX = centerX - buttonSize / 2;
+        const upY = bottomY - buttonSize - gap;
     
-        const leftX = centerX - buttonWidth - gap;
+        const leftX = centerX - buttonSize - gap;
         const leftY = bottomY;
     
         const rightX = centerX + gap;
         const rightY = bottomY;
     
-        const downX = centerX - buttonWidth / 2;
-        const downY = bottomY + buttonHeight + gap;
+        const downX = centerX - buttonSize / 2;
+        const downY = bottomY + buttonSize + gap;
     
-        const pauseX = canvasWidth - buttonWidth - gap;
+        const pauseX = canvasWidth - buttonSize - gap;
         const pauseY = bottomY;
     
         // Проверка за клик върху бутоните
-        if (x > upX && x < upX + buttonWidth && y > upY && y < upY + buttonHeight) {
+        if (x > upX && x < upX + buttonSize && y > upY && y < upY + buttonSize) {
             // Up button
             if (posoka !== "i") {
                 playerBall.vx = 0;
@@ -417,7 +419,7 @@ function increasePoints(amount) {
                 playMoveSound(zvukPath);
                 posoka = "i";
             }
-        } else if (x > leftX && x < leftX + buttonWidth && y > leftY && y < leftY + buttonHeight) {
+        } else if (x > leftX && x < leftX + buttonSize && y > leftY && y < leftY + buttonSize) {
             // Left button
             if (posoka !== "j") {
                 playerBall.vx = -speed;
@@ -425,7 +427,7 @@ function increasePoints(amount) {
                 playMoveSound(zvukPath);
                 posoka = "j";
             }
-        } else if (x > rightX && x < rightX + buttonWidth && y > rightY && y < rightY + buttonHeight) {
+        } else if (x > rightX && x < rightX + buttonSize && y > rightY && y < rightY + buttonSize) {
             // Right button
             if (posoka !== "k") {
                 playerBall.vx = speed;
@@ -433,7 +435,7 @@ function increasePoints(amount) {
                 playMoveSound(zvukPath);
                 posoka = "k";
             }
-        } else if (x > downX && x < downX + buttonWidth && y > downY && y < downY + buttonHeight) {
+        } else if (x > downX && x < downX + buttonSize && y > downY && y < downY + buttonSize) {
             // Down button
             if (posoka !== "m") {
                 playerBall.vx = 0;
@@ -441,7 +443,7 @@ function increasePoints(amount) {
                 playMoveSound(zvukPath);
                 posoka = "m";
             }
-        } else if (x > pauseX && x < pauseX + buttonWidth && y > pauseY && y < pauseY + buttonHeight) {
+        } else if (x > pauseX && x < pauseX + buttonSize && y > pauseY && y < pauseY + buttonSize) {
             // Pause button
             if (btnStartPressed) {
                 if (chocar === true || fin === true) {
