@@ -285,7 +285,7 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Задаване на стилове за текста
-    ctx.font = 'bold 2rem Arial'; // Шрифт и размер
+    ctx.font = 'bold 1.4rem Arial'; // Шрифт и размер
     ctx.textAlign = 'center'; // Центрира текста хоризонтално
     ctx.textBaseline = 'middle'; // Центрира текста вертикално
     //zakacheni = brZakacheniT();
@@ -308,7 +308,7 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Рисуване на основния текст
-    ctx.font = 'bold 2rem Arial';
+    ctx.font = 'bold 1.4rem Arial';
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
     ctx.font = 'bold 1.3rem Arial';
@@ -348,35 +348,7 @@ function increasePoints(amount) {
 }
 
 
-    function drawMobileControls() {
-        //const canvasWidth = canvas.width;
-        //const canvasHeight = canvas.height;
-    
-        // Изчисляване на позиции спрямо размерите на canvas
-        
-        //const buttonSize = Math.max(canvasWidth, canvasHeight) * 0.06;
-                
-        //const gap = canvasWidth * 0.03; // Разстояние между бутоните (5% от ширината)
-    
-        //const centerX = canvasWidth / 2;
-        //const bottomY = canvasHeight - 2 * buttonSize -  gap;
-    
-        // Координати на бутоните
-        //const upX = centerX - buttonSize / 2;
-        //const upY = bottomY - buttonSize;// - gap;
-    
-        /* const leftX = centerX - buttonSize - gap;
-        const leftY = bottomY;
-    
-        const rightX = centerX + gap;
-        const rightY = bottomY;
-    
-        const downX = centerX - buttonSize / 2;
-        const downY = bottomY + buttonSize;// + gap;
-    
-        const pauseX = canvasWidth - buttonSize - gap;
-        const pauseY = bottomY; */
-    
+    function drawMobileControls() {   
         // Рисуване на бутоните
         ctx.fillStyle = "rgba(192, 192, 192, 0.6)"; // Полупрозрачен светлосив цвят
         ctx.fillRect(upX, upY, buttonSize, buttonSize); // Up
@@ -386,8 +358,9 @@ function increasePoints(amount) {
         ctx.fillRect(pauseX, pauseY, buttonSize, buttonSize); // Pause
     
         // Текст върху бутоните
-        ctx.fillStyle = "black";
-        ctx.font = `${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
+        ctx.fillStyle = "#316e2a";//Зелено
+        //ctx.font = `${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
+        ctx.font = `bold ${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         
@@ -405,32 +378,7 @@ function increasePoints(amount) {
         // Изчисляване на размерите на canvas-а и позициите на бутоните
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-    
-        /* const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-    
-        const buttonSize = Math.max(canvasWidth, canvasHeight) * 0.06;
-        const gap = canvasWidth * 0.03; // Разстояние между бутоните (5% от ширината)
-    
-        const centerX = canvasWidth / 2;
-        const bottomY = canvasHeight - 2 * buttonSize - gap;
-    
-        const upX = centerX - buttonSize / 2;
-        const upY = bottomY - buttonSize; // - gap;
-    
-        const leftX = centerX - buttonSize - gap;
-        const leftY = bottomY;
-    
-        const rightX = centerX + gap;
-        const rightY = bottomY;
-    
-        const downX = centerX - buttonSize / 2;
-        const downY = bottomY + buttonSize;// + gap;
-    
-        const pauseX = canvasWidth - buttonSize - gap;
-        const pauseY = bottomY; */
-    
+        const y = event.clientY - rect.top;  
         // Проверка за клик върху бутоните
         if (x > upX && x < upX + buttonSize && y > upY && y < upY + buttonSize) {
             // Up button
