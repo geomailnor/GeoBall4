@@ -75,8 +75,6 @@ h1{
     font-style: italic;
     font-size: 1.5rem;
     color: hsl(34, 57%, 70%);
-    /* margin-top: 15px;
-    margin-bottom: 15px; */
 }
 .myH3{
     font-family: Arial, Helvetica, sans-serif;
@@ -93,8 +91,6 @@ canvas {
     position: absolute;
     display: block; /* Премахва допълнителните отстояния около канавата */
     background-color: hsl(0, 100%, 93%);
-    /* cursor: none; */
-    /* color: #ff6e6e;antiquewhite  */
 }
 #infoBar {
     position: fixed;
