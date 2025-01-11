@@ -96,6 +96,21 @@ button.addEventListener ("click", function(){
     cont.style.display = "none";
     btnStartPressed = true;
     saveDifficulty(); // Запазва избора на трудност
+
+    try {
+        sessionStorage.setItem('test', 'testValue');
+        const testValue = sessionStorage.getItem('test');
+        if (testValue === 'testValue') {
+            alert('sessionStorage работи');
+        } else {
+            alert('sessionStorage НЕ работи');
+        }
+    } catch (e) {
+        alert('Грешка при достъп до sessionStorage:', e);
+    }
+    
+
+
     if(easy.checked){
         speed = 3;
         brVragove = 2;
