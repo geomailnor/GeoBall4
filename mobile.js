@@ -105,21 +105,18 @@ button.addEventListener ("click", function(){
         brVragove = 2;
         enemiSkor2 = 1.5;
         enemiSkor1 = 0.5;
-        /* speedTimer = 30; */
     }
     else if(medium.checked){
         speed = 4;
         brVragove = 3;
         enemiSkor2 = 2.0;
         enemiSkor1 = 1.0;
-        /* speedTimer = 20; */
     }
     else{
         speed = 5;
         brVragove = 4;
         enemiSkor2 = 2.5;
         enemiSkor1 = 1.5;
-        /* speedTimer = 10; */
     }
     createEneBalls();
     drawGame();
@@ -131,7 +128,6 @@ function resizeCanvas() {
         location.reload(); // Рестартиране на играта
     }
         //Начало
-        //updateInfoBar();
         canvas.width = window.innerWidth+1;  // Задава ширината на видимия прозорец
         canvas.height = window.innerHeight - infoBar.offsetHeight+1; // Задава височината на видимия прозорец
         isPaused = false; //Igrata da prodalzhi
@@ -222,11 +218,6 @@ function createEneBalls(){
 
     }
 }
-/* document.addEventListener("keyup", (event) => {
-    if (event.code === "Space") {
-        spacePressed = false; // Задава, че Space вече не е натиснат
-    }
-}); */
 canvas.addEventListener("click", handleMobileControlClick);
 
 function nastroiPausedGame(){
@@ -309,7 +300,6 @@ function narisuvaiPobedaZaguba(zagPob){
     
     ctx.textAlign = 'center'; // Центрира текста хоризонтално
     ctx.textBaseline = 'middle'; // Центрира текста вертикално
-    //zakacheni = brZakacheniT();
 
     // Рисуване на сянка
     ctx.font = mainFontSz;
@@ -330,11 +320,6 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Рисуване на основния текст
-    /* if(canvasWidth < canvasHeight){
-        ctx.font = 'bold 1rem Arial';
-    }else{
-        ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
-    } */
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
     ctx.font = bonusFontSz;
@@ -349,10 +334,7 @@ function brSvobodniT(){
     const freeBalls = balls.filter(ball => !ball.isAttached);
     return freeBalls.length;
 }
-/* function brZakacheniT(){
-    const zakachBalls = balls.filter(ball => ball.isAttached);
-    return zakachBalls.length;
-} */
+
 function playMoveSound(path) {
     if(isPaused === false){
         const moveSoundInstance = new Audio(path);
@@ -365,7 +347,6 @@ function updateInfoBar() {
     }
     else{broiki= brSvobodniT();}
     infoBar.textContent = `${strHvanati}: ${points} | ${strDalg}: ${zakacheni} | ${strOstavashti}: ${broiki}`;
-    //infoBar.textContent = `Хванати: ${points} топки | Дължина: ${zakacheni} топки | Остават: ${broiki} топки`;
 }
 // увеличаване на точките:
 function increasePoints(amount) {
@@ -410,18 +391,11 @@ function drawRoundedRect(ctx, x, y, width, height, radius) {
         drawRoundedRect(ctx, downX, downY, buttonSize, buttonSize, radi);
         ctx.stroke();
         drawRoundedRect(ctx, pauseX, pauseY, buttonSize, buttonSize, radi);
-        ctx.stroke();
-        // Начертаване на рамките
-        /* ctx.strokeRect(upX, upY, buttonSize, buttonSize); // Up
-        ctx.strokeRect(leftX, leftY, buttonSize, buttonSize); // Left
-        ctx.strokeRect(rightX, rightY, buttonSize, buttonSize); // Right
-        ctx.strokeRect(downX, downY, buttonSize, buttonSize); // Down
-        ctx.strokeRect(pauseX, pauseY, buttonSize, buttonSize); */ // Pause
-    
+        ctx.stroke();   
         // Текст върху бутоните
         ctx.fillStyle = "rgba(255, 79, 59, 0.8)";//червено
         //ctx.font = `${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
-        ctx.font = `bold ${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
+        ctx.font = `bold ${Math.floor(buttonSize * 0.5)}px "Impact"`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         
@@ -432,7 +406,6 @@ function drawRoundedRect(ctx, x, y, width, height, radius) {
         ctx.font = `bold ${Math.floor(buttonSize * 0.3)}px Arial`;
         ctx.fillText("Pause", pauseX + buttonSize / 2, pauseY + buttonSize / 2);
     }
-
     function handleMobileControlClick(event) {
         let zvukPath = "sounds/snakeZavoj.wav";
     
@@ -489,65 +462,6 @@ function drawRoundedRect(ctx, x, y, width, height, radius) {
         }
     }
     
-
-/* function handleMobileControlClick(event) {
-    let zvukPath = "sounds/snakeZavoj.wav";
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    // Проверка за клик върху бутоните
-    if (x > 50 && x < 130 && y > 500 && y < 550) {
-        //console.log("Up button clicked");
-        if(posoka != "i"){
-            playerBall.vx = 0;
-            playerBall.vy = -speed;
-            playMoveSound(zvukPath);
-            posoka = "i";
-            }
-    } else if (x > 150 && x < 230 && y > 560 && y < 610) {
-        //console.log("Left button clicked");
-        if(posoka != "j"){
-            playerBall.vx = -speed;
-            playerBall.vy = 0;
-            playMoveSound(zvukPath);
-            posoka = "j";
-        }
-        
-    } else if (x > 250 && x < 330 && y > 560 && y < 610) {
-        //console.log("Right button clicked");
-        if(posoka != "k"){
-            playerBall.vx = speed;
-            playerBall.vy = 0;
-            playMoveSound(zvukPath);
-            posoka = "k";
-        }
-    } else if (x > 350 && x < 430 && y > 500 && y < 550) {
-        //console.log("Down button clicked");
-        if(posoka != "m"){
-            playerBall.vx = 0;
-            playerBall.vy = speed;
-            playMoveSound(zvukPath);
-            posoka = "m";
-        }
-
-    } else if (x > 450 && x < 550 && y > 500 && y < 550) {
-        //console.log("Pause button clicked");
-        if(btnStartPressed){
-            if(chocar === true || fin === true){
-                location.reload(); // Рестартиране на играта
-            }
-            isPaused = !isPaused; // Превключва между пауза и игра
-            //spacePressed = true; // Задава, че Space е натиснат
-            if(isPaused){
-                nastroiPausedGame();
-            }else{
-                nastroiResumedGame();
-            }
-        }
-    }
-} */
-
 function drawGame() {
     if (isPaused === false && chocar === false) { 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -591,12 +505,6 @@ function drawGame() {
         // Актуализиране на позицията на противника
         enemy.y += enemy.vy;
         enemy.x += enemy.vx;
-        //console.log(enemy.vy);
-            // Ако противникът достигне дъното, рестартираме го отгоре
-            /* if (enemy.y > canvas.height) {
-                enemy.y = -enemy.radius;
-                enemy.x = Math.random() * canvas.width;
-            } */
         //Противниковите топки да отскачат
         if (enemy.x < enemy.radius || enemy.x > canvas.width - enemy.radius) enemy.vx *= -1;
         if (enemy.y < enemy.radius || enemy.y > canvas.height - enemy.radius) enemy.vy *= -1;
@@ -717,7 +625,6 @@ function dobaviAngl(){
     strDalg = "length";
     strOstavashti = "remaining";
     updateInfoBar();
-    //document.getElementById("restartButton").textContent = "Restart";
     //restartButton.textContent = "Restart";
     strIgrataENaPauza = "The game is paused! Press the 'Pause' key";
 }
@@ -736,16 +643,13 @@ function dobaviNorsk(){
     strDalg = "lengde";
     strOstavashti = "gjenstår";
     updateInfoBar();
-    //document.getElementById("restartButton").textContent = "Start på nytt";
     //restartButton.textContent = "Restart";
     strIgrataENaPauza = "Spillet er på pause! Trykk på 'Pause'-tasten";
 }
 if (selectedLanguage === 'en') {
-    //console.log('Зарежда се английски...');
     // Добави английски текст
     dobaviAngl();
 } else if (selectedLanguage === 'no') {
-    //console.log('Laster norsk...');
     dobaviNorsk();// Добави норвежки текст
 }
 createBalls();
