@@ -291,7 +291,7 @@ function narisuvaiPobedaZaguba(zagPob){
         bonusFontSz = 'bold 1rem Arial';
         infoFontSz = '1rem Arial';
     } 
-    else {mainFontSz = 'bold 1.5rem Arial';
+    else {mainFontSz = 'bold 2rem Arial';
         bonusFontSz = 'bold 1.3rem Arial';
         infoFontSz = '1.2rem Arial';
     }
