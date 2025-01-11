@@ -285,10 +285,15 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Задаване на стилове за текста
-    if(canvasWidth < canvasHeight){
-        ctx.font = 'bold 1rem Arial';
-    }else{
-        ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
+    let mainFontSz, bonusFontSz, infoFontSz;
+    if (canvasWidth < canvasHeight) {
+        mainFontSz = 'bold 1rem Arial';
+        bonusFontSz = 'bold 1rem Arial';
+        infoFontSz = '1rem Arial';
+    } 
+    else {mainFontSz = 'bold 1.5rem Arial';
+        bonusFontSz = 'bold 1.3rem Arial';
+        infoFontSz = '1.2rem Arial';
     }
     
     ctx.textAlign = 'center'; // Центрира текста хоризонтално
@@ -296,6 +301,7 @@ function narisuvaiPobedaZaguba(zagPob){
     //zakacheni = brZakacheniT();
 
     // Рисуване на сянка
+    ctx.font = mainFontSz;
     ctx.fillStyle = 'gray'; // Цвят на сянката
     ctx.fillText(moiText, canvas.width / 2 + 1, canvas.height / 2.4 +2 );
     if(zakacheni === BR_TOPKI){
@@ -308,7 +314,7 @@ function narisuvaiPobedaZaguba(zagPob){
         else{
             bonusText = `Bravo! 100% success rate! ! !`;
         }
-        ctx.font = 'bold 1.3rem Arial';
+        ctx.font = bonusFontSz;
         ctx.fillText(bonusText, canvas.width / 2 + 1, canvas.height / 2.4 + 52);
     }
     
@@ -318,23 +324,12 @@ function narisuvaiPobedaZaguba(zagPob){
     }else{
         ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
     } */
-    let mainFontSize, bonusFontSize, infoFontSize;
-    if (canvasWidth < canvasHeight) {
-        mainFontSize = 'bold 1rem Arial';
-        bonusFontSize = 'bold 1rem Arial';
-        infoFontSize = '1rem Arial';
-    } 
-    else {mainFontSize = 'bold 1.5rem Arial';
-        bonusFontSize = 'bold 1.3rem Arial';
-        infoFontSize = '1.2rem Arial';
-    }
-
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
-    ctx.font = 'bold 1.3rem Arial';
+    ctx.font = bonusFontSz;
     ctx.fillText(bonusText, canvas.width / 2, canvas.height / 2.4 + 50);
     
-    ctx.font = '1.2rem Arial';
+    ctx.font = infoFontSz;
     ctx.fillStyle ='#555';
     ctx.fillText(infoText, Math.round(canvas.width / 2), Math.round(canvas.height / 1.5));
 
