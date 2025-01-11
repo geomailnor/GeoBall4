@@ -142,6 +142,7 @@ function resizeCanvas() {
         canvasHeight = canvas.height;
         if(canvasWidth < canvasHeight) {
             restartButton.textContent= "🔄";
+            restartButton.style.padding="1px";
         }
         else{
             restartButton.textContent= "Restart";
@@ -679,7 +680,7 @@ function dobaviAngl(){
     strOstavashti = "remaining";
     updateInfoBar();
     //document.getElementById("restartButton").textContent = "Restart";
-    restartButton.textContent = "Restart";
+    //restartButton.textContent = "Restart";
     strIgrataENaPauza = "The game is paused! Press the 'Pause' key";
 }
 
@@ -698,7 +699,7 @@ function dobaviNorsk(){
     strOstavashti = "gjenstår";
     updateInfoBar();
     //document.getElementById("restartButton").textContent = "Start på nytt";
-    restartButton.textContent = "Restart";
+    //restartButton.textContent = "Restart";
     strIgrataENaPauza = "Spillet er på pause! Trykk på 'Pause'-tasten";
 }
 if (selectedLanguage === 'en') {
