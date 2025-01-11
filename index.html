@@ -11,16 +11,10 @@
             script.src = "mobile.js";
             document.head.appendChild(script);
         } else {
-
-            // Зарежда само mobile.js, ако е мобилно устройство
-            let script = document.createElement("script");
-            script.src = "mobile.js";
-            document.head.appendChild(script);
-
             // Зарежда desktop.js за настолни устройства
-            /* let script = document.createElement("script");
+            let script = document.createElement("script");
             script.src = "desktop.js";
-            document.head.appendChild(script); */
+            document.head.appendChild(script);
         }
     </script>
     <link rel="stylesheet" href="style.css">
@@ -46,6 +40,6 @@
     
     <canvas id="gameCanvas"></canvas>
     <div id="infoBar">Информация: 0 точки</div>
-    <button id="restartButton">Рестарт</button>
+    <button id="restartButton" title="Restart">Restart</button>
 </body>
 </html>
