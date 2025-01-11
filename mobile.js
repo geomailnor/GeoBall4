@@ -127,19 +127,20 @@ function resizeCanvas() {
         location.reload(); // Рестартиране на играта
     }
         //Начало
-        updateInfoBar();
+        //updateInfoBar();
         canvas.width = window.innerWidth+1;  // Задава ширината на видимия прозорец
         canvas.height = window.innerHeight - infoBar.offsetHeight+1; // Задава височината на видимия прозорец
         isPaused = false; //Igrata da prodalzhi
         canvResized = true; 
         broyach ++;
-        if(infoBar.style.backgroundColor = "rgba(180, 180, 180, 1)"){
-            nastroiResumedGame();
-        }
-        
+
         canvasWidth = canvas.width;
         canvasHeight = canvas.height;
-    
+        if(canvasWidth < canvasHeight) infoBar.style.textAlign = "left";
+
+        if(infoBar.style.backgroundColor = "rgba(180, 180, 180, 1)"){
+            nastroiResumedGame();
+        }   
         buttonSize = Math.max(canvasWidth, canvasHeight) * 0.06;
         gap = canvasWidth * 0.03; // Разстояние между бутоните (5% от ширината)
     
@@ -216,7 +217,7 @@ function createEneBalls(){
 canvas.addEventListener("click", handleMobileControlClick);
 
 function nastroiPausedGame(){
-    canvas.style.cursor = 'auto';
+    //canvas.style.cursor = 'auto';
     infoBar.style.backgroundImage = "linear-gradient(to bottom, rgba(150, 150, 150, 1), rgba(80, 80, 80, 1))";
     infoBar.style.backgroundColor = "rgba(180, 180, 180, 1)";
     infoBar.style.borderTop = "2px solid rgba(120, 120, 120, 1)"; // Сива горна граница
@@ -224,9 +225,6 @@ function nastroiPausedGame(){
     infoBar.textContent = strIgrataENaPauza;//"Играта е на пауза! Натиснете клавиш 'Пауза'";
 }
 function nastroiResumedGame(){
-    if(btnStartPressed){
-        canvas.style.cursor = 'none';
-    }
     infoBar.style.backgroundImage = "";
     infoBar.style.backgroundColor = "";
     infoBar.style.borderTop = "2px solid #8b0000"; // Оригиналната граница
@@ -247,7 +245,7 @@ function narisuvaiPobedaZaguba(zagPob){
     if(zagPob === "pobeda"){
         isPaused = true;
         fin = true;
-        canvas.style.cursor = 'auto';
+        //canvas.style.cursor = 'auto';
         if(selectedLanguage==='bg'){
             moiText = `Победихте! Имате ${zakacheni} топки!`;
             infoText = 'Очаквайте продължение... 😉';
@@ -266,7 +264,7 @@ function narisuvaiPobedaZaguba(zagPob){
     else { //zaguba
         chocar = true;
         isPaused = true;
-        canvas.style.cursor = 'auto';
+        //canvas.style.cursor = 'auto';
         if(selectedLanguage==='bg'){
             moiText = `Сблъсък!!! Загубихте.😞 Имате ${zakacheni} топки`;
             infoText = 'Натиснете "ПАУЗА" или Рестарт за нова игра.';
@@ -671,7 +669,8 @@ function dobaviAngl(){
     strDalg = "length";
     strOstavashti = "remaining";
     updateInfoBar();
-    document.getElementById("restartButton").textContent = "Restart";
+    //document.getElementById("restartButton").textContent = "Restart";
+    restartButton.textContent = "Restart";
     strIgrataENaPauza = "The game is paused! Press the 'Pause' key";
 }
 
@@ -689,7 +688,8 @@ function dobaviNorsk(){
     strDalg = "lengde";
     strOstavashti = "gjenstår";
     updateInfoBar();
-    document.getElementById("restartButton").textContent = "Start på nytt";
+    //document.getElementById("restartButton").textContent = "Start på nytt";
+    restartButton.textContent = "Restart";
     strIgrataENaPauza = "Spillet er på pause! Trykk på 'Pause'-tasten";
 }
 if (selectedLanguage === 'en') {
