@@ -313,11 +313,22 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Рисуване на основния текст
-    if(canvasWidth < canvasHeight){
+    /* if(canvasWidth < canvasHeight){
         ctx.font = 'bold 1rem Arial';
     }else{
         ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
+    } */
+    let mainFontSize, bonusFontSize, infoFontSize;
+    if (canvasWidth < canvasHeight) {
+        mainFontSize = 'bold 1rem Arial';
+        bonusFontSize = 'bold 1rem Arial';
+        infoFontSize = '1rem Arial';
+    } 
+    else {mainFontSize = 'bold 1.5rem Arial';
+        bonusFontSize = 'bold 1.3rem Arial';
+        infoFontSize = '1.2rem Arial';
     }
+
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
     ctx.font = 'bold 1.3rem Arial';
