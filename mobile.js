@@ -141,10 +141,13 @@ function resizeCanvas() {
         canvasWidth = canvas.width;
         canvasHeight = canvas.height;
         if(canvasWidth < canvasHeight) {
+            infoBar.style.padding= "5px";
+            infoBar.style.textAlign = 'left';
             restartButton.textContent= "🔄";
-            restartButton.style.padding="1px";
         }
         else{
+            infoBar.style.padding = "0";
+            infoBar.style.textAlign = 'center';
             restartButton.textContent= "Restart";
         }
 
