@@ -285,7 +285,12 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Задаване на стилове за текста
-    ctx.font = 'bold 1.4rem Arial'; // Шрифт и размер
+    if(canvasWidth < canvasHeight){
+        ctx.font = 'bold 1rem Arial';
+    }else{
+        ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
+    }
+    
     ctx.textAlign = 'center'; // Центрира текста хоризонтално
     ctx.textBaseline = 'middle'; // Центрира текста вертикално
     //zakacheni = brZakacheniT();
@@ -308,7 +313,11 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Рисуване на основния текст
-    ctx.font = 'bold 1.4rem Arial';
+    if(canvasWidth < canvasHeight){
+        ctx.font = 'bold 1rem Arial';
+    }else{
+        ctx.font = 'bold 1.5rem Arial'; // Шрифт и размер
+    }
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
     ctx.font = 'bold 1.3rem Arial';
