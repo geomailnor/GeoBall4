@@ -372,7 +372,20 @@ function increasePoints(amount) {
     points += amount;
     updateInfoBar();
 }
-
+//Заобля рамките на бутоните
+function drawRoundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y); // Започваме от горния ляв ъгъл с радиус
+    ctx.lineTo(x + width - radius, y); // Горна страна
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius); // Горен десен ъгъл
+    ctx.lineTo(x + width, y + height - radius); // Дясна страна
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height); // Долен десен ъгъл
+    ctx.lineTo(x + radius, y + height); // Долна страна
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius); // Долен ляв ъгъл
+    ctx.lineTo(x, y + radius); // Лява страна
+    ctx.quadraticCurveTo(x, y, x + radius, y); // Горен ляв ъгъл
+    ctx.closePath(); // Затваряме пътя
+}
 
     function drawMobileControls() {   
         // Рисуване на бутоните
@@ -382,9 +395,31 @@ function increasePoints(amount) {
         ctx.fillRect(rightX, rightY, buttonSize, buttonSize); // Right
         ctx.fillRect(downX, downY, buttonSize, buttonSize); // Down
         ctx.fillRect(pauseX, pauseY, buttonSize, buttonSize); // Pause
+        // Рамка около бутоните
+        ctx.strokeStyle = "rgba(255, 79, 59, 0.8)"; // Червена рамка
+        ctx.lineWidth = 2; // Дебелина на рамката
+        const radi = 10;
+
+        // Начертаване на рамките със заоблени ъгли
+        drawRoundedRect(ctx, upX, upY, buttonSize, buttonSize, radi);
+        ctx.stroke();
+        drawRoundedRect(ctx, leftX, leftY, buttonSize, buttonSize, radi);
+        ctx.stroke();
+        drawRoundedRect(ctx, rightX, rightY, buttonSize, buttonSize, radi);
+        ctx.stroke();
+        drawRoundedRect(ctx, downX, downY, buttonSize, buttonSize, radi);
+        ctx.stroke();
+        drawRoundedRect(ctx, pauseX, pauseY, buttonSize, buttonSize, radi);
+        ctx.stroke();
+        // Начертаване на рамките
+        /* ctx.strokeRect(upX, upY, buttonSize, buttonSize); // Up
+        ctx.strokeRect(leftX, leftY, buttonSize, buttonSize); // Left
+        ctx.strokeRect(rightX, rightY, buttonSize, buttonSize); // Right
+        ctx.strokeRect(downX, downY, buttonSize, buttonSize); // Down
+        ctx.strokeRect(pauseX, pauseY, buttonSize, buttonSize); */ // Pause
     
         // Текст върху бутоните
-        ctx.fillStyle = "#316e2a";//Зелено
+        ctx.fillStyle = "rgba(255, 79, 59, 0.8)";//червено
         //ctx.font = `${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.font = `bold ${Math.floor(buttonSize * 0.5)}px "Segoe UI Symbol"`; // Размерът на шрифта е 50% от височината на бутоните
         ctx.textAlign = "center";
@@ -394,7 +429,7 @@ function increasePoints(amount) {
         ctx.fillText("←", leftX + buttonSize / 2, leftY + buttonSize / 2);
         ctx.fillText("→", rightX + buttonSize / 2, rightY + buttonSize / 2);
         ctx.fillText("↓", downX + buttonSize / 2, downY + buttonSize / 2);
-        ctx.font = `${Math.floor(buttonSize * 0.3)}px Arial`;
+        ctx.font = `bold ${Math.floor(buttonSize * 0.3)}px Arial`;
         ctx.fillText("Pause", pauseX + buttonSize / 2, pauseY + buttonSize / 2);
     }
 
