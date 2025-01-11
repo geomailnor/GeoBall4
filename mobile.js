@@ -140,7 +140,12 @@ function resizeCanvas() {
 
         canvasWidth = canvas.width;
         canvasHeight = canvas.height;
-        if(canvasWidth < canvasHeight) restartButton.textContent= "🔄";
+        if(canvasWidth < canvasHeight) {
+            restartButton.textContent= "🔄";
+        }
+        else{
+            restartButton.textContent= "Restart";
+        }
 
         if(infoBar.style.backgroundColor = "rgba(180, 180, 180, 1)"){
             nastroiResumedGame();
