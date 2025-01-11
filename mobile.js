@@ -86,6 +86,10 @@ const loadDifficulty = () => {
         }
     }
 };
+// Добавяне на слушатели за радиобутоните
+document.querySelectorAll('input[name="trudnost"]').forEach((radio) => {
+    radio.addEventListener('change', saveDifficulty);
+});
 // Зарежда запазената трудност, когато страницата се зареди
 window.addEventListener('DOMContentLoaded', loadDifficulty);
 restartButton.addEventListener("click", function(){
@@ -96,21 +100,6 @@ button.addEventListener ("click", function(){
     cont.style.display = "none";
     btnStartPressed = true;
     saveDifficulty(); // Запазва избора на трудност
-
-    try {
-        sessionStorage.setItem('test', 'testValue');
-        const testValue = sessionStorage.getItem('test');
-        if (testValue === 'testValue') {
-            alert('sessionStorage работи');
-        } else {
-            alert('sessionStorage НЕ работи');
-        }
-    } catch (e) {
-        alert('Грешка при достъп до sessionStorage:', e);
-    }
-    
-
-
     if(easy.checked){
         speed = 3;
         brVragove = 2;
