@@ -210,7 +210,7 @@ function createEneBalls(){
     for (let i = 0; i < brVragove; i++) {
         enemies.push({
             radius: 10,
-            x: Math.random() * canvas.width, // Случайна позиция по хоризонтала
+            x: Math.random() * (canvas.width - 60) + 30, // Случайна позиция по хоризонтала от 30 до (canvas.width - 30)
             y: (i===0 ? 8 : 12), // Начална y позиция
             vx: (Math.random() * enemiSkor2 + enemiSkor1) * (Math.random() < 0.5 ? -1 : 1), // Случайна странична скорост
             vy: 1.4,//Math.random() * enemiSkor2 + enemiSkor1, // Положителна скорост на падане
@@ -489,50 +489,54 @@ function drawGame() {
             if (playerBall.y < playerBall.radius) {playerBall.y = playerBall.radius;}
             if (playerBall.y > canvas.height - playerBall.radius && btnStartPressed) {playerBall.y = canvas.height - playerBall.radius; }
         }
-        // Рисуване на противниковите топки
-        
-        enemies.forEach((enemy, index) => {
-        const gradiEnem = ctx.createRadialGradient(enemy.x - 3, enemy.y - 3, 2, enemy.x, enemy.y, enemy.radius);
-        gradiEnem.addColorStop(0, "white");
-        gradiEnem.addColorStop(0.5, "#999");
-        gradiEnem.addColorStop(1, "black");
-        ctx.beginPath();
-        ctx.arc(Math.round(enemy.x), Math.round(enemy.y), enemy.radius, 0, Math.PI * 2);
-        ctx.fillStyle = gradiEnem;
-        ctx.fill();
-        ctx.closePath();
 
-        // Актуализиране на позицията на противника
-        enemy.y += enemy.vy;
-        enemy.x += enemy.vx;
-        //Противниковите топки да отскачат
-        if (enemy.x < enemy.radius || enemy.x > canvas.width - enemy.radius) enemy.vx *= -1;
-        if (enemy.y < enemy.radius || enemy.y > canvas.height - enemy.radius) enemy.vy *= -1;
-            // Проверка за сблъсък с играча
-            const dx = playerBall.x - enemy.x;
-            const dy = playerBall.y - enemy.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+        // Ако brFin е по-голямо от 0, спираме да рисуваме противниковите топки
+        if (brFin < 1) {
+            // Рисуване на противниковите топки
 
-            // Проверка за сблъсък с опашката
-            let zvukCortar = "sounds/minus.wav";
-            playerBall.attachedBalls.forEach((attachedBall, attachedIndex) => {
-                const dxTail = attachedBall.x - enemy.x;
-                const dyTail = attachedBall.y - enemy.y;
-                const distanceTail = Math.sqrt(dxTail * dxTail + dyTail * dyTail);
-                if (distanceTail < attachedBall.radius + enemy.radius) {
-                    // Премахване на част от опашката
-                    playerBall.attachedBalls.splice(attachedIndex);
-                    zakacheni = playerBall.attachedBalls.length;
-                    playMoveSound(zvukCortar);
-                    updateInfoBar();
+            enemies.forEach((enemy, index) => {
+            const gradiEnem = ctx.createRadialGradient(enemy.x - 3, enemy.y - 3, 2, enemy.x, enemy.y, enemy.radius);
+            gradiEnem.addColorStop(0, "white");
+            gradiEnem.addColorStop(0.5, "#999");
+            gradiEnem.addColorStop(1, "black");
+            ctx.beginPath();
+            ctx.arc(Math.round(enemy.x), Math.round(enemy.y), enemy.radius, 0, Math.PI * 2);
+            ctx.fillStyle = gradiEnem;
+            ctx.fill();
+            ctx.closePath();
+
+            // Актуализиране на позицията на противника
+            enemy.y += enemy.vy;
+            enemy.x += enemy.vx;
+            //Противниковите топки да отскачат
+            if (enemy.x < enemy.radius || enemy.x > canvas.width - enemy.radius) enemy.vx *= -1;
+            if (enemy.y < enemy.radius || enemy.y > canvas.height - enemy.radius) enemy.vy *= -1;
+                // Проверка за сблъсък с играча
+                const dx = playerBall.x - enemy.x;
+                const dy = playerBall.y - enemy.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                // Проверка за сблъсък с опашката
+                let zvukCortar = "sounds/minus.wav";
+                playerBall.attachedBalls.forEach((attachedBall, attachedIndex) => {
+                    const dxTail = attachedBall.x - enemy.x;
+                    const dyTail = attachedBall.y - enemy.y;
+                    const distanceTail = Math.sqrt(dxTail * dxTail + dyTail * dyTail);
+                    if (distanceTail < attachedBall.radius + enemy.radius) {
+                        // Премахване на част от опашката
+                        playerBall.attachedBalls.splice(attachedIndex);
+                        zakacheni = playerBall.attachedBalls.length;
+                        playMoveSound(zvukCortar);
+                        updateInfoBar();
+                    }
+                });
+                let buffer = 4;
+                if (distance < playerBall.radius + enemy.radius - buffer) {
+                    //alert("Game Over!");
+                    chocar = true;
                 }
             });
-            let buffer = 4;
-            if (distance < playerBall.radius + enemy.radius - buffer) {
-                //alert("Game Over!");
-                chocar = true;
-            }
-        });
+        }
 
         // Рисуване и актуализиране на топките
         balls.forEach((ball) => {
