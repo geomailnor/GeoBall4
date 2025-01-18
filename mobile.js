@@ -320,6 +320,7 @@ function narisuvaiPobedaZaguba(zagPob){
     }
     
     // Рисуване на основния текст
+    ctx.font = mainFontSz;
     ctx.fillStyle = '#1e1e95'; // Основният цвят на текста
     ctx.fillText(moiText, canvas.width / 2, canvas.height / 2.4);
     ctx.font = bonusFontSz;
@@ -327,7 +328,7 @@ function narisuvaiPobedaZaguba(zagPob){
     
     ctx.font = infoFontSz;
     ctx.fillStyle ='#555';
-    ctx.fillText(infoText, Math.round(canvas.width / 2), Math.round(canvas.height / 1.5));
+    ctx.fillText(infoText, Math.round(canvas.width / 2), Math.round(canvas.height * 4 / 5));
 
 }
 function brSvobodniT(){
