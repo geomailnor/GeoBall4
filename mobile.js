@@ -6,12 +6,15 @@ const vtoriH3 = document.getElementById("vtoriH3");
 const lblLes = document.getElementById("lblLesno");
 const lblSred = document.getElementById("lblSredno");
 const lblTrud = document.getElementById("lblTrudno");
-
+const cont = document.getElementById("cont");
 const canvas = document.getElementById("gameCanvas");
 const button = document.getElementById("button");
 const restartButton = document.getElementById("restartButton");
 const infoBar = document.getElementById("infoBar");
 const ctx = canvas.getContext("2d");
+const easy = document.getElementById("easy");
+const medium = document.getElementById("medium");
+const hard = document.getElementById("hard");
 let brVragove = 2;
 const BR_TOPKI = 50;
 let broiki = BR_TOPKI;
